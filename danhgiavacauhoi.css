@@ -19,11 +19,11 @@
 
 .testimonials-slider {
   display: flex;
-  justify-content: center;
-  transition: transform 0.5s ease;
   gap: 20px;
+  will-change: transform;
+  transition: transform 0.55s ease;
+  width: auto; /* hoặc min-width: fit-content nếu bạn muốn an toàn */
 }
-
 .testimonial-item {
   border: 1px solid #e2e2e2;
   border-radius: 16px;

@@ -115,86 +115,73 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // slider đnahs giá kahcs hàng 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const slider = document.querySelector('.testimonials-slider');
   const items = Array.from(slider.querySelectorAll('.testimonial-item'));
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
 
-  // Thông số cố định cho 3 item
   const VISIBLE = 3;
   let current = 0;
   let autoSlideInterval = null;
-  let isAnimating = false;
+  let isTransitioning = false;
 
-  // Tạo clone cho hiệu ứng seamless
-  function setupClones() {
-    // Xóa clone cũ nếu có
-    slider.querySelectorAll('.clone').forEach(clone => clone.remove());
-    // Clone cuối lên đầu
-    for (let i = items.length - VISIBLE; i < items.length; i++) {
-      const clone = items[i].cloneNode(true);
-      clone.classList.add('clone');
-      slider.insertBefore(clone, slider.firstChild);
-    }
-    // Clone đầu xuống cuối
-    for (let i = 0; i < VISIBLE; i++) {
-      const clone = items[i].cloneNode(true);
-      clone.classList.add('clone');
-      slider.appendChild(clone);
-    }
-  }
+  const TOTAL_ITEMS = items.length;
+  let totalClones = 0;
 
   function getItemWidth() {
-    let item = slider.querySelector('.testimonial-item');
-    if (!item) return 320;
-    let gap = parseInt(getComputedStyle(slider).gap || 0, 10);
+    const item = slider.querySelector('.testimonial-item');
+    const gap = parseInt(getComputedStyle(slider).gap || 0, 10);
     return item.offsetWidth + gap;
   }
 
-  function moveTo(idx, withTransition = true) {
-    let itemWidth = getItemWidth();
-    slider.style.transition = withTransition ? "transform 0.55s cubic-bezier(.7,1.3,.2,1)" : "none";
-    slider.style.transform = `translateX(${-itemWidth * (idx + VISIBLE)}px)`;
-    current = idx;
+  function clearClones() {
+    slider.querySelectorAll('.clone').forEach(el => el.remove());
+  }
+
+  function setupClones() {
+    clearClones();
+    const head = items.slice(0, VISIBLE);
+    const tail = items.slice(-VISIBLE);
+
+    head.forEach(el => {
+      const clone = el.cloneNode(true);
+      clone.classList.add('clone');
+      slider.appendChild(clone);
+    });
+
+    tail.forEach(el => {
+      const clone = el.cloneNode(true);
+      clone.classList.add('clone');
+      slider.insertBefore(clone, slider.firstChild);
+    });
+
+    totalClones = VISIBLE * 2;
+  }
+
+  function moveTo(index, withTransition = true) {
+    const itemWidth = getItemWidth();
+    slider.style.transition = withTransition ? "transform 0.55s ease" : "none";
+    slider.style.transform = `translateX(-${itemWidth * (index + VISIBLE)}px)`;
+    current = index;
   }
 
   function nextSlide() {
-    if (isAnimating) return;
-    isAnimating = true;
-    moveTo(current + 1, true);
-    setTimeout(() => {
-      const max = items.length - VISIBLE;
-      if (current + 1 > max - 1) {
-        // Không animate, nhảy về đầu ngay lập tức, không giật
-        moveTo(0, false);
-      } else {
-        current++;
-      }
-      isAnimating = false;
-    }, 560);
-    restartAuto();
+    if (isTransitioning) return;
+    isTransitioning = true;
+    moveTo(current + 1);
   }
 
   function prevSlide() {
-    if (isAnimating) return;
-    isAnimating = true;
-    moveTo(current - 1, true);
-    setTimeout(() => {
-      const max = items.length - VISIBLE;
-      if (current - 1 < 0) {
-        moveTo(max - 1, false);
-      } else {
-        current--;
-      }
-      isAnimating = false;
-    }, 560);
-    restartAuto();
+    if (isTransitioning) return;
+    isTransitioning = true;
+    moveTo(current - 1);
   }
 
   function autoSlide() {
     autoSlideInterval = setInterval(nextSlide, 4000);
   }
+
   function restartAuto() {
     clearInterval(autoSlideInterval);
     autoSlide();
@@ -205,35 +192,34 @@ document.addEventListener("DOMContentLoaded", function () {
     moveTo(current, false);
   }
 
-  // Xử lý khi kết thúc animation để cập nhật lại current (cực mượt)
   slider.addEventListener('transitionend', () => {
-    const max = items.length - VISIBLE;
+    const max = TOTAL_ITEMS - VISIBLE;
     if (current > max - 1) {
-      moveTo(0, false);
+      moveTo(0, false); // về đầu
     }
     if (current < 0) {
-      moveTo(max - 1, false);
+      moveTo(max - 1, false); // về cuối
     }
+    isTransitioning = false;
   });
 
-  prevBtn.addEventListener('click', prevSlide);
-  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    restartAuto();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    restartAuto();
+  });
+
   window.addEventListener('resize', handleResize);
 
   // INIT
   setupClones();
   moveTo(0, false);
   autoSlide();
-
 });
- const track = document.querySelector('.category-track');
-  const items = Array.from(track.children);
-
-  // Tự động clone để tạo hiệu ứng vòng lặp
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    track.appendChild(clone);
-  });
 
 
   //
