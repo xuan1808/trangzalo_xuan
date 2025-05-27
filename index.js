@@ -223,50 +223,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   //
-  const slides = document.querySelectorAll('.slider-slide');
-  const prevBtn = document.querySelector('.slider-arrow.left');
-  const nextBtn = document.querySelector('.slider-arrow.right');
-  let current = 0;
-  let autoSlide;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active');
-      if (i === index) {
-        slide.classList.add('active');
+  const slider = document.querySelector(".testimonials-slider");
+  let items = document.querySelectorAll(".testimonial-item");
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+
+  let currentIndex = 1;
+  const itemWidth = items[0].offsetWidth + 20;
+
+  // Clone phần tử đầu & cuối
+  const firstClone = items[0].cloneNode(true);
+  const lastClone = items[items.length - 1].cloneNode(true);
+
+  firstClone.classList.add("clone");
+  lastClone.classList.add("clone");
+
+  slider.appendChild(firstClone);
+  slider.insertBefore(lastClone, items[0]);
+
+  items = document.querySelectorAll(".testimonial-item"); // cập nhật lại NodeList
+
+  slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+
+  function updateSlider() {
+    slider.style.transition = "transform 0.55s ease";
+    slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex >= items.length - 1) return;
+    currentIndex++;
+    updateSlider();
+
+    slider.addEventListener("transitionend", () => {
+      if (items[currentIndex].classList.contains("clone")) {
+        slider.style.transition = "none";
+        currentIndex = 1;
+        slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
       }
     });
-  }
-
-  function nextSlide() {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }
-
-  function prevSlide() {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-  }
-
-  function startAutoSlide() {
-    autoSlide = setInterval(nextSlide, 4000); // chuyển slide mỗi 4 giây
-  }
-
-  function resetAutoSlide() {
-    clearInterval(autoSlide);
-    startAutoSlide();
-  }
-
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-    resetAutoSlide();
   });
 
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
-    resetAutoSlide();
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex <= 0) return;
+    currentIndex--;
+    updateSlider();
+
+    slider.addEventListener("transitionend", () => {
+      if (items[currentIndex].classList.contains("clone")) {
+        slider.style.transition = "none";
+        currentIndex = items.length - 2;
+        slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+      }
+    });
   });
 
-  // Khởi động
-  showSlide(current);
-  startAutoSlide();
+  window.addEventListener("resize", () => {
+    slider.style.transition = "none";
+    slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+  });
