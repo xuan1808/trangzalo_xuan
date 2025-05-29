@@ -224,61 +224,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //
 
-  const slider = document.querySelector(".testimonials-slider");
-  let items = document.querySelectorAll(".testimonial-item");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
+    const slides = document.querySelectorAll('.slider-slide');
+  const nextBtn = document.querySelector('.slider-arrow.right');
+  const prevBtn = document.querySelector('.slider-arrow.left');
 
-  let currentIndex = 1;
-  const itemWidth = items[0].offsetWidth + 20;
+  let currentIndex = 0;
+  const totalSlides = slides.length;
 
-  // Clone phần tử đầu & cuối
-  const firstClone = items[0].cloneNode(true);
-  const lastClone = items[items.length - 1].cloneNode(true);
-
-  firstClone.classList.add("clone");
-  lastClone.classList.add("clone");
-
-  slider.appendChild(firstClone);
-  slider.insertBefore(lastClone, items[0]);
-
-  items = document.querySelectorAll(".testimonial-item"); // cập nhật lại NodeList
-
-  slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
-
-  function updateSlider() {
-    slider.style.transition = "transform 0.55s ease";
-    slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+    });
+    slides[index].classList.add('active');
   }
 
-  nextBtn.addEventListener("click", () => {
-    if (currentIndex >= items.length - 1) return;
-    currentIndex++;
-    updateSlider();
-
-    slider.addEventListener("transitionend", () => {
-      if (items[currentIndex].classList.contains("clone")) {
-        slider.style.transition = "none";
-        currentIndex = 1;
-        slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
-      }
-    });
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
   });
 
-  prevBtn.addEventListener("click", () => {
-    if (currentIndex <= 0) return;
-    currentIndex--;
-    updateSlider();
-
-    slider.addEventListener("transitionend", () => {
-      if (items[currentIndex].classList.contains("clone")) {
-        slider.style.transition = "none";
-        currentIndex = items.length - 2;
-        slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
-      }
-    });
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
   });
 
+  // Tự động chạy sau mỗi 5 giây
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  }, 2000);
+
+  // Hiển thị slide đầu tiên ngay khi tải
+  showSlide(currentIndex);
   window.addEventListener("resize", () => {
     slider.style.transition = "none";
     slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
