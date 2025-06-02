@@ -1,4 +1,4 @@
-// slider banner
+
  
 // Vanilla JS Slider for .why-oa-slider
 document.addEventListener('DOMContentLoaded', function () {
@@ -113,8 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
   goTo(0);
   autoPlay();
 });
-// slider đnahs giá kahcs hàng 
 
+
+
+// slider đnahs giá kahcs hàng 
 document.addEventListener("DOMContentLoaded", () => {
   const slider = document.querySelector('.testimonials-slider');
   const items = Array.from(slider.querySelectorAll('.testimonial-item'));
@@ -222,41 +224,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-  //
 
-    const slides = document.querySelectorAll('.slider-slide');
-  const nextBtn = document.querySelector('.slider-arrow.right');
-  const prevBtn = document.querySelector('.slider-arrow.left');
 
-  let currentIndex = 0;
-  const totalSlides = slides.length;
+   // banner slider
+document.addEventListener('DOMContentLoaded', function () {
+  let slides = document.querySelectorAll('.slider-slide');
+  let current = 0;
+  let leftBtn = document.querySelector('.slider-arrow.left');
+  let rightBtn = document.querySelector('.slider-arrow.right');
+  let timer;
 
-  function showSlide(index) {
+  function showSlide(idx) {
     slides.forEach((slide, i) => {
-      slide.classList.remove('active');
+      slide.classList.toggle('active', i === idx);
     });
-    slides[index].classList.add('active');
+    current = idx;
   }
 
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
+  function nextSlide() {
+    showSlide((current + 1) % slides.length);
+  }
+  function prevSlide() {
+    showSlide((current - 1 + slides.length) % slides.length);
+  }
+
+  rightBtn.addEventListener('click', () => {
+    nextSlide();
+    resetAuto();
+  });
+  leftBtn.addEventListener('click', () => {
+    prevSlide();
+    resetAuto();
   });
 
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    showSlide(currentIndex);
-  });
+  function startAuto() {
+    timer = setInterval(nextSlide, 3500);
+  }
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
 
-  // Tự động chạy sau mỗi 5 giây
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-  }, 2000);
-
-  // Hiển thị slide đầu tiên ngay khi tải
-  showSlide(currentIndex);
-  window.addEventListener("resize", () => {
-    slider.style.transition = "none";
-    slider.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
-  });
+  showSlide(current);
+  startAuto();
+});

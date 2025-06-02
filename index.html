@@ -16,57 +16,92 @@
 <body>
 
   <!-- Banner quảng bá -->
-  
   <div class="company-banner">
-     <div class="logo">
-    <div class="company-banner__headline">FULL DỊCH VỤ ZALO OA</div>
+    <div class="company-banner__header">
+      <h1 class="company-banner__headline">FULL DỊCH VỤ ZALO OA</h1>
+      <form class="company-banner__searchbar">
+        <input class="searchbar__input" type="text" placeholder="Tìm kiếm">
+        <button class="searchbar__submit" type="submit">Tìm kiếm</button>
+      </form>
     </div>
-
-
-    <form class="company-banner__searchbar">
-      <input class="searchbar__input" type="text" placeholder="Tìm kiếm theo tên vị trí...">
-      <button class="searchbar__submit" type="submit">Tìm kiếm</button>
-    </form>
-
-    <div class="category-wrapper">
-      <div class="category-scroller">
-        <div class="category-track">
-          <div class="category-item">
-            <img src="img/ke-toan-kiem-toan.svg" alt="Tài chính">
-            <span>Khởi Tạo - Zalo OA</span>
+    <div class="company-banner__banner-outer">
+      <div class="company-banner__banner-bg">
+        <div class="banner-slider">
+          <div class="slider-track">
+            <div class="slider-slide active">
+              <img src="img/slider-chuan-1-7670.png" alt="Banner chính" />
+            </div>
+            <div class="slider-slide">
+              <img src="img/banner-fb-1-37480-min-5617-1178.png" alt="Banner phụ 2" />
+            </div>
+          
           </div>
-          <div class="category-item">
-            <img src="img/kinh-doanh-ban-hang (1).svg" alt="CNTT">
-            <span>Zalo OA</span>
+          <button class="slider-arrow left" aria-label="Trước">&#8592;</button>
+          <button class="slider-arrow right" aria-label="Sau">&#8594;</button>
+        </div>
+        <div class="company-banner__floating-content">
+          <div class="company-banner__desc">
+            DỊCH VỤ ZALO OA TRỌN GÓI
           </div>
-          <div class="category-item">
-            <img src="img/kinh-doanh-ban-hang.svg" alt="Nhân sự">
-            <span>Quản Trị - Zalo OA</span>
-          </div>
-          <div class="category-item">
-            <img src="img/marketing-truyen-thong-quang-cao.svg" alt="Marketing">
-            <span>Quản Cáo - Zalo OA</span>
+          <div class="company-banner__cta">
+            <a href="#contact" class="cta-btn">Nhận tư vấn miễn phí</a>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Slider Section Start -->
-    <div class="banner-slider">
-      <div class="slider-track">
-        <div class="slider-slide active">
-          <img src="img/slider-chuan-1-7670.png" alt="Recruitment Ad 1" />
+    <div class="category-marquee">
+      <div class="category-track">
+        <div class="category-item">
+          <img src="img/ke-toan-kiem-toan.svg" alt="Tài chính">
+          <span>Khởi Tạo OA</span>
         </div>
-        <div class="slider-slide">
-          <img src="img/banner-fb-1-37480-min-5617-1178.png" alt="Recruitment Ad 2" />
+        <div class="category-item">
+          <img src="img/kinh-doanh-ban-hang.svg" alt="Bán hàng">
+          <span>Quản Trị OA</span>
         </div>
-       
+        <div class="category-item">
+          <img src="img/marketing-truyen-thong-quang-cao.svg" alt="Marketing">
+          <span>Quảng Cáo OA</span>
+        </div>
+        <div class="category-item">
+          <img src="img/kinh-doanh-ban-hang (1).svg" alt="CSKH">
+          <span>CSKH & Chatbot</span>
+        </div>
+        <div class="category-item">
+          <img src="img/marketing-truyen-thong-quang-cao.svg" alt="Phân tích">
+          <span>Báo Cáo - Phân Tích</span>
+        </div>
+        <div class="category-item">
+          <img src="img/cong-nghe-thong-tin.svg" alt="Automation">
+          <span>Tự Động Hóa</span>
+        </div>
+        <!-- Repeat for smooth animation -->
+       <div class="category-item">
+          <img src="img/ke-toan-kiem-toan.svg" alt="Tài chính">
+          <span>Khởi Tạo OA</span>
+        </div>
+        <div class="category-item">
+          <img src="img/kinh-doanh-ban-hang.svg" alt="Bán hàng">
+          <span>Quản Trị OA</span>
+        </div>
+        <div class="category-item">
+          <img src="img/marketing-truyen-thong-quang-cao.svg" alt="Marketing">
+          <span>Quảng Cáo OA</span>
+        </div>
+        <div class="category-item">
+          <img src="img/kinh-doanh-ban-hang (1).svg" alt="CSKH">
+          <span>CSKH & Chatbot</span>
+        </div>
+        <div class="category-item">
+          <img src="img/marketing-truyen-thong-quang-cao.svg" alt="Phân tích">
+          <span>Báo Cáo - Phân Tích</span>
+        </div>
+        <div class="category-item">
+          <img src="img/cong-nghe-thong-tin.svg" alt="Automation">
+          <span>Tự Động Hóa</span>
+        </div>
       </div>
-      <button class="slider-arrow left" aria-label="Trước">&#8592;</button>
-      <button class="slider-arrow right" aria-label="Sau">&#8594;</button>
     </div>
-
-    <!-- Slider Section End -->
   </div>
 
 
@@ -105,7 +140,7 @@
   <section class="why-choose-oa">
     <div class="container">
       <div class="why-oa-title-group">
-        <h2><span class="icon">💡</span> Tại sao nên quản trị Zalo OA bài bản?</h2>
+        <h2> QUẢN TRỊ ZALO OA</h2>
       </div>
       <div class="why-oa-slider-wrap">
         <button class="why-oa-slider-arrow left" aria-label="Trước">&#8592;</button>
@@ -163,7 +198,7 @@
 
   <!-- Bảng giá dịch vụ Zalo OA -->
   <section class="pricing-section">
-    <h2>Bảng giá dịch vụ Zalo OA doanh nghiệp</h2>
+    <h2>BẢNG GIÁ DỊCH VỤ</h2>
     <div class="pricing-cards">
 
       <div class="pricing-card starter">
@@ -216,7 +251,7 @@
 
   <!-- Bảng tính năng -->
   <section class="features-section">
-    <h2>Tính năng nổi bật theo từng gói</h2>
+    <h2>TÍNH NĂNG NỔI BẬT</h2>
     <div class="pricing-table">
       <table>
         <thead>
@@ -308,7 +343,7 @@
   <!-- Section: Quy trình triển khai -->
   <section class="deployment-process">
     <div class="container">
-      <h2>Quy trình triển khai</h2>
+      <h2>QUY TRÌNH TRIỂN KHAI</h2>
       <div class="timeline">
         <div class="timeline-item left">
           <div class="circle"></div>
@@ -346,7 +381,7 @@
   <!-- Section: Đánh giá của khách hàng -->
 
   <section class="testimonials-section">
-    <h2 class="testimonials-title">💬 Khách hàng nói gì về chúng tôi</h2>
+    <h2 class="testimonials-title">KHÁCH HÀNG NÓI GÌ VỀ SOTA</h2>
     <div class="testimonial-slider-wrapper">
       <button class="slider-btn prev-btn">&#8592;</button>
 
@@ -413,7 +448,7 @@
   <!-- FAQ Section: Cau hỏi-->
   <section class="faq-section">
     <div class="container">
-      <h2><span class="icon"></span> Câu hỏi thường gặp về Zalo OA</h2>
+      <h2><span class="icon"></span> CÂU HỎI THƯỜNG GẶP </h2>
       <div class="faq-list">
         <div class="faq-item">
           <input type="checkbox" id="faq1">
@@ -468,7 +503,7 @@
   </section>
 
   <section class="keyword-category-section">
-    <div class="keyword-category-title">Từ khóa thường gặp</div>
+    <div class="keyword-category-title">TỪ KHÓA </div>
     <div class="keyword-category-list">
       <div class="keyword-category-item">
         <span class="keyword-category-icon"><img src="https://cdn-icons-png.flaticon.com/512/138/138281.png"

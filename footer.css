@@ -151,6 +151,7 @@
   position: relative;
   z-index: 2;
   transform: translateY(-8px);
+  margin-top: 20px;
 }
 .zalooa-footer-form-title {
   font-size: 1.13rem;
@@ -226,9 +227,9 @@
   margin: 0 auto;
   padding: 0 24px 0 24px;
   display: flex;
-  justify-content: space-between;
+  
   align-items: flex-start;
-  gap: 32px;
+  gap: 155px;
   flex-wrap: wrap;
 }
 .zalooa-company-info-left {

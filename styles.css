@@ -36,7 +36,7 @@ body {
 /* Nhận triển khai dịch vụ ZALO OA */
 .service-register {
   background: linear-gradient(110deg, #2b2207 60%, #7c6215 100%);
-  padding: 70px 0 60px 0;
+  padding: 30px 0 60px 0;
   color: #ffe69b;
   position: relative;
   overflow: hidden;
