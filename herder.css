@@ -220,6 +220,8 @@
     
  }
 }
+
+
 @media (max-width: 600px) {
   .company-banner__headline { font-size: 21px; }
   .category-item { font-size: 13px; padding: 7px 10px; }
