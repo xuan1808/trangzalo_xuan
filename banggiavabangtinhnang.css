@@ -90,7 +90,7 @@
   width: 100%;
   background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 100%);
   color: #fff;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s; 
 }
 
 .pricing-card button:hover {

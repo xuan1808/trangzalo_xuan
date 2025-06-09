@@ -198,227 +198,197 @@
 
 
 /* Section container */
-:root {
-  --primary: #232f53;      /* Xanh tím than đậm */
-  --primary-light: #506b9f;/* Xanh tím sáng */
-  --accent: #fc7f3a;       /* Cam nổi bật */
-  --accent-light: #ffb27d; /* Cam nhạt */
-  --dot-border: #fc7f3a;
-  --white: #fff;
-  --card-bg: #fff;
-  --shadow: 0 4px 18px #b2c2e644;
-}
-
-/* Không dùng màu nền, section trắng */
-.deployment-process {
-  padding: 48px 0 28px 0;
-  background: none;
+.process-section {
+  width: 100vw;
+  min-height: 380px;
+  background: linear-gradient(102deg, #575346 0%, #fff9d6 100%);
+  padding: 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
-.deployment-process .container {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 2vw;
+.process-section .intro-block {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 38px;
+  margin-left: 36px;
+  margin-bottom: 12px;
 }
-
-/* Tiêu đề section */
-.deployment-process h2 {
-  text-align: center;
-  font-size: 2.1rem;
-  font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 38px;
-  letter-spacing: 2px;
-  position: relative;
+.process-section .intro-block h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 0.18em;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
 }
-
-.deployment-process h2::after {
-  content: "";
+.process-section .intro-block h2 .accent {
+  color: #ffe44c;
   display: block;
-  width: 66px;
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--accent) 30%, var(--primary-light) 100%);
-  margin: 18px auto 0 auto;
-  opacity: 0.85;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+.process-section .intro-block .cta-btn {
+  margin-top: 36px;
+  padding: 13px 38px;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #ffde4a 10%, #f9b11c 100%);
+  color: #18160d;
+  font-weight: 700;
+  border: none;
+  font-size: 1.11rem;
+  cursor: pointer;
+  box-shadow: 0 2px 16px #ffe44c33;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s;
+}
+.process-section .intro-block .cta-btn:hover {
+  background: linear-gradient(90deg, #f9b11c 10%, #ffde4a 100%);
 }
 
-/* Timeline 1 hàng ngang dài */
-.timeline {
-  position: relative;
+/* Golden process steps */
+.process-list {
+  flex: 1 1 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 60px;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1200px;
-  min-height: 110px;
+  gap: 0;
+  justify-content: center;
+  align-items: flex-end;
   padding: 0;
-  background: none;
+  width: 100%;
 }
 
-/* Dây nối giữa các bước */
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 35px;
-  left: 6%;
-  right: 6%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-light) 10%, var(--accent) 60%, var(--primary-light) 100%);
-  border-radius: 6px;
-  z-index: 1;
-  opacity: 0.25;
-}
-
-/* Step item (card) */
-.timeline-item {
-  position: relative;
-  z-index: 2;
+.process-item {
   flex: 1 1 0;
-  max-width: 300px;
-  min-width: 170px;
+  min-width: 0;
+  max-width: 370px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--card-bg);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 38px 18px 20px 18px;
-  margin: 0;
-  border: 2.5px solid #f3f4f6;
-  transition: box-shadow 0.18s, transform 0.18s, border 0.18s;
-  overflow: visible;
-  min-height: 90px;
-}
-
-.timeline-item:hover {
-  box-shadow: 0 10px 28px #fc7f3a33;
-  background: #fff;
-  border-color: var(--accent);
-  transform: translateY(-6px) scale(1.022);
-}
-
-/* Step số - dot phối cam nổi bật */
-.timeline-item .circle {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 46px;
-  height: 46px;
-  background: radial-gradient(circle at 60% 60%, var(--accent) 65%, var(--accent-light) 100%);
-  border: 3px solid var(--dot-border);
-  border-radius: 50%;
-  box-shadow: 0 2px 14px #fc7f3a55, 0 0 0 8px var(--card-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--primary);
-  z-index: 5;
-}
-
-.timeline-item:nth-child(1) .circle::after { content: "1"; }
-.timeline-item:nth-child(2) .circle::after { content: "2"; }
-.timeline-item:nth-child(3) .circle::after { content: "3"; }
-.timeline-item:nth-child(4) .circle::after { content: "4"; }
-
-/* Nội dung step */
-.timeline-item .content {
-  margin-top: 22px;
+  margin: 0 12px;
   background: none;
   border: none;
-  box-shadow: none;
   padding: 0;
-  text-align: center;
+  position: relative;
 }
 
-.timeline-item .content h3 {
-  margin-top: 0;
-  font-size: 1.14rem;
-  font-weight: 700;
-  color: var(--primary-light);
-  margin-bottom: 8px;
+.process-item .process-img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0;
+  margin-top: 12px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 18px #ffe44c44);
+}
+
+.process-item .big-step-number {
+  font-size: 8.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 3px #ffe44c;
+  text-stroke: 3px #ffe44c;
+  background: linear-gradient(180deg, #fff7a4 10%, #ffd700 80%, #ecb600 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  opacity: 0.80;
   letter-spacing: 0.01em;
-  text-shadow: 0 2px 10px #b2c2e633;
-  background: none;
-}
-
-.timeline-item .content p {
-  margin: 0;
-  color: #4a354d;
-  font-size: 1.01rem;
-  line-height: 1.54;
-  font-weight: 500;
-  min-height: 27px;
-  opacity: 0.99;
-  background: none;
+  margin-bottom: -18px;
+  margin-top: 0;
   text-align: center;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 2px 16px #ffe44c99);
 }
 
-/* Responsive: mobile dọc lại */
-@media (max-width: 1000px) {
-  .timeline {
-    max-width: 99vw;
-    gap: 22px;
-  }
-  .timeline-item {
-    max-width: 240px;
-    min-width: 120px;
-    padding: 24px 7px 14px 7px;
-  }
-  .timeline-item .circle {
-    width: 32px;
-    height: 32px;
-    font-size: 0.98rem;
-    top: -11px;
-    box-shadow: 0 2px 8px #fc7f3a44, 0 0 0 3px var(--card-bg);
-  }
+.process-item .content {
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  margin-top: 0;
+  padding: 0 16px 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (max-width: 700px) {
-  .deployment-process {
-    padding: 22px 0 8px 0;
+.process-item .content h3 {
+  color: #fffbe7;
+  font-size: 1.45rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+  margin-top: 0;
+  letter-spacing: 0.01em;
+  line-height: 1.12;
+  text-shadow: 0 2px 10px #000c, 0 1px 0 #ffe44c;
+  filter: drop-shadow(0 2px 8px #ffe44c99);
+}
+
+.process-item .content p {
+  color: #fffbe7;
+  font-size: 1.08rem;
+  font-weight: 500;
+  opacity: 0.97;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 260px;
+  text-align: center;
+  text-shadow: 0 2px 8px #ffe44c66, 0 1px 0 #fff;
+  word-break: break-word;
+  margin-bottom: 18px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .process-list {
+    gap: 0;
   }
-  .timeline {
+  .process-item {
+    margin: 0 2vw;
+  }
+  .process-item .big-step-number {
+    font-size: 6.1rem;
+    margin-bottom: -10px;
+  }
+  .process-item .content p {
+    max-width: 95vw;
+  }
+}
+@media (max-width: 900px) {
+  .process-section {
+    min-height: 0;
+    padding: 14px 0 0 0;
+    align-items: flex-start;
+  }
+  .process-section .intro-block {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 22px;
+    align-items: flex-start;
+  }
+  .process-list {
     flex-direction: column;
-    gap: 18px;
+    align-items: center;
+    gap: 8px;
+  }
+  .process-item {
     max-width: 99vw;
-    min-height: unset;
-    padding: 0;
+    margin: 0 0 16px 0;
+    padding-bottom: 7px;
   }
-  .timeline::before {
-    display: none;
-  }
-  .timeline-item {
-    max-width: 99vw;
-    min-width: 0;
-    padding: 16px 4px 7px 4px;
-    border-radius: 10px;
-    margin-bottom: 13px;
-  }
-  .timeline-item .circle {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 0.8rem;
-    border-width: 1.5px;
-    box-shadow: 0 2px 6px #fc7f3a22, 0 0 0 1.5px var(--card-bg);
-  }
-  .timeline-item .content h3 {
-    font-size: 0.99rem;
-    margin-bottom: 3px;
-  }
-  .timeline-item .content p {
-    font-size: 0.87rem;
-    min-height: 1px;
+  .process-item .big-step-number {
+    font-size: 2.9rem;
+    margin-bottom: -2px;
   }
 }

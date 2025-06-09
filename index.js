@@ -268,3 +268,46 @@ document.addEventListener('DOMContentLoaded', function () {
   showSlide(current);
   startAuto();
 });
+// quy trình 
+// Vanilla JS slider for 4-step process, show 3 at a time, slide left/right
+document.addEventListener('DOMContentLoaded', function () {
+  const items = Array.from(document.querySelectorAll('.timeline-item'));
+  const track = document.querySelector('.timeline-track');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  let current = 0; // index of the first visible item
+
+  function render() {
+    items.forEach((el, idx) => {
+      el.classList.remove('active', 'prev', 'next');
+      el.style.display = 'none';
+    });
+    // Always show 3 items (current, current+1, current+2), highlight current+1 as 'active'
+    for (let i = 0; i < 3; i++) {
+      let idx = current + i;
+      if (idx >= items.length) continue;
+      items[idx].style.display = '';
+      if (i === 0) items[idx].classList.add('prev');
+      else if (i === 1) items[idx].classList.add('active');
+      else if (i === 2) items[idx].classList.add('next');
+    }
+    // Move the track (not strictly needed if hiding/showing)
+    // track.style.transform = `translateX(-${current * (items[0].offsetWidth + 30)}px)`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= items.length - 3;
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (current > 0) {
+      current--;
+      render();
+    }
+  });
+  nextBtn.addEventListener('click', function () {
+    if (current < items.length - 3) {
+      current++;
+      render();
+    }
+  });
+  render();
+});
