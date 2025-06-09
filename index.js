@@ -1,6 +1,6 @@
 
- 
-// Vanilla JS Slider for .why-oa-slider
+
+// quan tri zalo oa
 document.addEventListener('DOMContentLoaded', function () {
   const slider = document.getElementById('whyOASlider');
   const leftBtn = document.querySelector('.why-oa-slider-arrow.left');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let autoInterval;
   let cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(slider).gap || 32);
 
-  // Dots
+
   function renderDots() {
     dotsWrap.innerHTML = '';
     for (let i = 0; i < cardCount; i++) {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
       dotsWrap.appendChild(dot);
     }
   }
-  // Scroll to card
+
   function goTo(idx) {
     current = idx;
     cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(slider).gap || 32);
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-   // banner slider
+// banner slider
 document.addEventListener('DOMContentLoaded', function () {
   let slides = document.querySelectorAll('.slider-slide');
   let current = 0;
