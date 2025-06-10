@@ -227,7 +227,6 @@
   margin: 0 auto;
   padding: 0 24px 0 24px;
   display: flex;
-  
   align-items: flex-start;
   gap: 155px;
   flex-wrap: wrap;
@@ -277,7 +276,6 @@
   margin: 20px 0 8px 0;
   flex-wrap: wrap;
 }
-
 .zalooa-company-ecosys-item {
   display: flex;
   align-items: center;
@@ -298,7 +296,6 @@
   box-sizing: border-box;
   text-align: center;
 }
-
 .zalooa-company-ecosys-item img {
   width: 46px;
   height: 46px;
@@ -308,7 +305,6 @@
   box-shadow: 0 1px 6px #ffe69b33;
   margin-bottom: 6px;
 }
-
 .zalooa-company-ecosys-item.ecosys-main {
   background: #1f3133;
   color: #fff;
@@ -329,9 +325,8 @@
   box-shadow: 0 4px 20px #f5d36e55;
   transform: translateY(-2px) scale(1.04);
 }
-
 .zalooa-company-info-copyright{
- font-size: 1.05rem;
+  font-size: 1.05rem;
   color: #767676;
   margin-top: 18px;
   font-weight: 400;
@@ -365,7 +360,7 @@
   margin-top: 6px;
 }
 
-/* Responsive sửa lại cho cách đều, co dãn tốt hơn */
+/* =================== RESPONSIVE TỐI ƯU =================== */
 @media (max-width: 1200px) {
   .zalooa-footer-container {
     padding: 24px 2vw 12px 2vw;
@@ -397,6 +392,7 @@
   }
   .zalooa-company-info-main {
     gap: 20px;
+    flex-wrap: wrap;
   }
   .zalooa-company-ecosystem {
     gap: 18px;
@@ -445,17 +441,40 @@
     width: 15px;
     height: 15px;
   }
+  .zalooa-footer-formwrap {
+    min-width: 0;
+    max-width: 100vw;
+    margin-top: 10px;
+    justify-content: center;
+  }
   .zalooa-footer-form {
     padding: 7px 1vw 6px 1vw;
     border-radius: 8px;
     font-size: 0.93rem;
+    margin: 0 auto;
+    max-width: 98vw;
   }
   .zalooa-footer-form-title {
     font-size: 0.91rem;
     margin-bottom: 7px;
   }
+  .zalooa-footer-form-group input,
+  .zalooa-footer-form-group textarea {
+    font-size: 0.92rem;
+    padding: 8px 8px;
+    border-radius: 6px;
+  }
+  .zalooa-btn-form {
+    font-size: 0.91rem;
+    padding: 9px 0;
+    border-radius: 6px;
+    margin-top: 12px;
+  }
   .zalooa-company-info-main {
     gap: 12px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0 1vw;
   }
   .zalooa-company-ecosystem {
     gap: 7px;
@@ -481,6 +500,7 @@
     padding: 0 1vw;
     gap: 7px;
     flex-direction: column;
+    flex-wrap: wrap;
   }
   .zalooa-company-info-title {
     font-size: 0.99rem;
@@ -510,5 +530,54 @@
   .zalooa-company-info-copyright {
     font-size: 0.81rem;
     margin-top: 4px;
+  }
+  .zalooa-footer-formwrap {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 0;
+    max-width: 100vw;
+  }
+  .zalooa-footer-form {
+    padding: 5px 1vw 5px 1vw;
+    font-size: 0.92rem;
+    border-radius: 6px;
+    margin: 0 auto;
+    max-width: 99vw;
+  }
+  .zalooa-footer-form-title {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }
+  .zalooa-footer-form-group input,
+  .zalooa-footer-form-group textarea {
+    font-size: 0.85rem;
+    padding: 6px 5px;
+    border-radius: 5px;
+  }
+  .zalooa-btn-form {
+    font-size: 0.85rem;
+    padding: 7px 0;
+    border-radius: 5px;
+    margin-top: 8px;
+  }
+}
+@media (max-width: 450px) {
+  .zalooa-footer-container {
+    padding: 8px 1vw 4px 1vw;
+  }
+  .zalooa-footer-formwrap {
+    margin-top: 7px;
+    padding: 0;
+  }
+  .zalooa-footer-form {
+    padding: 3px 1vw 3px 1vw;
+    font-size: 0.81rem;
+    border-radius: 4px;
+    margin: 0 auto;
+    max-width: 99vw;
+  }
+  .zalooa-footer-form-title {
+    font-size: 0.78rem;
+    margin-bottom: 3px;
   }
 }

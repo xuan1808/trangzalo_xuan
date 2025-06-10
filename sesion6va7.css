@@ -1,0 +1,350 @@
+
+/* FAQ */
+.faq-section {
+  padding: 56px 0 44px 0;
+  background: none;
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 900;
+  color:linear-gradient(110deg, #2b2207 65%, #7c6215 100%);
+  margin-bottom: 38px;
+  letter-spacing: 0.13em;
+}
+
+/* Modern rounded card with pastel purple-blue */
+.faq-list {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 0;
+}
+
+.faq-item {
+  background: linear-gradient(110deg, #2b2207 65%, #7c6215 100%);
+  border-radius: 18px;
+  border: none;
+  box-shadow: 0 4px 22px #c7baf933, 0 1.5px 0 #b3b6f511;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.18s, transform 0.15s;
+}
+
+.faq-item:hover {
+  box-shadow: 0 6px 28px #a98dff33, 0 1.5px 0 #b3b6f511;
+  transform: translateY(-2px) scale(1.012);
+}
+
+.faq-question {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.13rem;
+  font-weight: 700;
+  color:rgb(204, 135, 40);
+  cursor: pointer;
+  padding: 22px 28px 18px 62px;
+  background: none;
+  border: none;
+  border-radius: 18px 18px 0 0;
+  min-height: 56px;
+  position: relative;
+  transition: background 0.17s;
+}
+
+.faq-question::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background: url('https://cdn-icons-png.flaticon.com/512/6134/6134065.png') center center/28px 28px no-repeat;
+  opacity: 0.85;
+}
+
+.faq-item input[type="checkbox"] {
+  display: none;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 28px 20px 62px;
+  color: #3d3561;
+  font-size: 1.07rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 0 0 18px 18px;
+  border-top: 1.5px solid #e8d8ff;
+  animation: fadeinfaq 0.33s;
+}
+
+.faq-item input[type="checkbox"]:checked + .faq-question {
+  background: linear-gradient(90deg, #ede1fa 80%, #e0f2ff 100%);
+}
+
+.faq-item input[type="checkbox"]:checked ~ .faq-answer {
+  display: block;
+}
+
+@keyframes fadeinfaq {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive: 1 cột sát mép mobile, nhỏ lại */
+@media (max-width: 900px) {
+  .faq-section {
+    padding: 28px 0 18px 0;
+  }
+  .faq-list {
+    max-width: 99vw;
+    padding: 0 1vw;
+    gap: 10px;
+  }
+  .faq-item {
+    border-radius: 11px;
+  }
+  .faq-question, .faq-answer {
+    padding-left: 38px;
+    padding-right: 10px;
+    font-size: 0.99rem;
+  }
+  .faq-question::before {
+    left: 8px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+  }
+  .faq-answer {
+    border-radius: 0 0 11px 11px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Vùng nền section danh mục từ khóa */
+.keyword-category-section {
+  background: linear-gradient(120deg, #2b2207 60%, #7c6215 100%);
+  padding: 64px 0 44px 0;
+  color: #ffe69b;
+  position: relative;
+  box-shadow: 0 8px 40px #7c621560 inset, 0 2px 32px #ffe69b22;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.keyword-category-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #ffe69b;
+  margin-bottom: 38px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-shadow: 0 2px 8px #7c621555;
+  position: relative;
+}
+
+.keyword-category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 30px 32px;
+  max-width: 1250px;
+  margin: 0 auto;
+  justify-items: stretch;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 30px;
+}
+
+/* Each item in grid, aligned and spaced uniformly */
+.keyword-category-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: rgba(56, 44, 11, 0.92);
+  padding: 10px 32px 13px 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 22px #ffe69b22, 0 2px 0 #ffe69b44 inset;
+  min-width: 0;
+  color: #ffe69b;
+  font-size: 1.09rem;
+  font-weight: 700;
+  transition: background 0.19s, box-shadow 0.19s, color 0.19s, transform 0.19s;
+  cursor: pointer;
+  border: 1.5px solid #ffe69b44;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(1.5px);
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.keyword-category-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px 10px 24px 10px;
+  pointer-events: none;
+  background: linear-gradient(120deg, #ffe69b33 0%, #fffbe98a 100%);
+  opacity: 0;
+  transition: opacity 0.18s;
+  z-index: 1;
+}
+
+.keyword-category-item:hover,
+.keyword-category-item:focus {
+  background: linear-gradient(90deg, #ffe69b 10%, #7d6619 90%);
+  color: #2b2207;
+  border-color: #ffe69b;
+  box-shadow: 0 7px 32px #ffe69b80, 0 2px 0 #ffe69b99 inset;
+  transform: translateY(-4px) scale(1.07);
+}
+
+.keyword-category-item:hover::after,
+.keyword-category-item:focus::after {
+  opacity: 0.13;
+}
+
+.keyword-category-icon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #ffe69b 55%, #7c6215 100%);
+  box-shadow: 0 2px 8px #ffe69b22;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.keyword-category-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 1.5px 5px #ffe69b88);
+  display: block;
+  margin: auto;
+}
+
+/* alternating subtle background for visual interest, but keep alignment */
+.keyword-category-item:nth-child(3n+1) {
+  background: rgba(222, 202, 115, 0.12);
+  color: #ffe69b;
+}
+
+.keyword-category-item:nth-child(3n+2) {
+  background: rgba(56, 44, 11, 0.93);
+  color: #fffbe9;
+}
+
+.keyword-category-item:nth-child(3n) {
+  background: rgba(124, 98, 21, 0.11);
+  color: #ffe69b;
+}
+
+/* Improved Responsive - keep grid, adjust padding, font, columns for mobile */
+@media (max-width: 1100px) {
+  .keyword-category-list {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px 8px;
+    max-width: 98vw;
+    padding-bottom: 18px;
+  }
+  .keyword-category-title {
+    font-size: 1.38rem;
+    margin-bottom: 22px;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .keyword-category-section {
+    padding: 28px 0 12px 0;
+    border-radius: 0 0 18px 18px;
+  }
+  .keyword-category-title {
+    font-size: 1.09rem;
+    margin-bottom: 13px;
+    text-align: center;
+    padding-left: 0;
+  }
+  .keyword-category-list {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 9px 4px;
+    max-width: 98vw;
+    padding-bottom: 6px;
+  }
+  .keyword-category-item {
+    font-size: 0.98rem;
+    padding: 7px 10px 7px 9px;
+    border-radius: 14px 5px 14px 5px;
+  }
+  .keyword-category-icon {
+    width: 22px;
+    height: 22px;
+    padding: 2px;
+  }
+  .keyword-category-icon img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .keyword-category-section {
+    padding: 14px 0 4px 0;
+  }
+  .keyword-category-title {
+    font-size: 0.97rem;
+    margin-bottom: 8px;
+  }
+  .keyword-category-list {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 5px 2px;
+    padding-bottom: 3px;
+  }
+  .keyword-category-item {
+    font-size: 0.89rem;
+    padding: 5px 5px 5px 6px;
+    border-radius: 10px 4px 10px 4px;
+  }
+  .keyword-category-icon {
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+  }
+  .keyword-category-icon img {
+    width: 11px;
+    height: 11px;
+  }
+}
+/* Responsive tối ưu cho Zalo OA */
+@media (max-width: 1100px) {
+
+  .why-choose-oa .why-features,
+  .support-content,
+  .process-steps,
+  .pricing-cards,
+  .testimonials-list {
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+}

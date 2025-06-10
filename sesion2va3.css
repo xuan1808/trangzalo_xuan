@@ -26,13 +26,15 @@
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 6px 20px #ffd70044;
-  width: 240px;
-  padding: 25px 18px;
+  width: 260px;
+  padding: 27px 20px 24px 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   border: 2px solid #ffe066;
   transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 520px;
+  position: relative;
 }
 
 .pricing-card:hover {
@@ -41,19 +43,23 @@
 }
 
 .pricing-card h3 {
-  font-size: 1.28rem;
-  margin-bottom: 12px;
-  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  font-weight: 800;
   color: var(--gold-dark);
   letter-spacing: 0.2px;
-  text-align: center;
+  text-align: left;
+  width: 100%;
 }
 
 .pricing-card .price {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 900;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   color: var(--gold-dark);
+  text-align: left;
+  width: 100%;
+  letter-spacing: 0.02em;
 }
 
 .pricing-card ul {
@@ -61,15 +67,21 @@
   width: 100%;
   margin-bottom: 18px;
   color: #3f2e00;
-  font-size: 0.97rem;
+  font-size: 1rem;
   padding: 0;
 }
 
 .pricing-card ul li {
-  margin-bottom: 7px;
+  margin-bottom: 10px;
   font-weight: 500;
   position: relative;
   padding-left: 18px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.pricing-card ul li:last-child {
+  margin-bottom: 0;
 }
 
 .pricing-card ul li:before {
@@ -77,11 +89,13 @@
   color: var(--gold);
   font-weight: bold;
   position: absolute;
-  left: 0; 
+  left: 0;
+  top: 2px;
+  font-size: 1.15em;
 }
 
 .pricing-card button {
-  padding: 10px 0;
+  padding: 11px 0;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -90,7 +104,11 @@
   width: 100%;
   background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 100%);
   color: #fff;
-  transition: background 0.2s, color 0.2s; 
+  transition: background 0.2s, color 0.2s;
+  margin-top: auto;
+  margin-bottom: 0;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 10px #ffd70033;
 }
 
 .pricing-card button:hover {
@@ -106,6 +124,106 @@
 .btn-premium:hover {
   background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
   color: #fff;
+}
+
+/* NỔI BẬT: LƯU Ý */
+.pricing-note-easyread {
+  margin-top: 36px;
+  margin-bottom: 0;
+  text-align: center;
+  background: linear-gradient(90deg, #fceabb 0%, #fffbe8 55%, #f8d778 100%);
+  color: #3e2700;
+  font-size: 1.22rem;
+  font-weight: 700;
+  border-radius: 17px;
+  padding: 22px 44px 19px 44px;
+  max-width: 1040px;
+  min-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 3px 18px #ffe06644, 0 0 0 1.5px #ffe066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border: 2.5px solid #ffd700;
+  letter-spacing: 0.01em;
+  line-height: 1.62;
+  text-shadow: 0 2px 8px #fff9e033, 0 0.5px 0 #fffbe8;
+}
+
+.pricing-note-easyread .icon {
+  background: #fff;
+  color: #ffd700;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 1.49em;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  box-shadow: 0 0 0 2.5px #ffd70044;
+}
+
+.pricing-note-easyread strong {
+  color: #be9300;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 1.18em;
+  text-transform: uppercase;
+  margin-right: 7px;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 900px) {
+  .pricing-note-easyread {
+    font-size: 1.02rem;
+    padding: 16px 7vw 13px 7vw;
+    min-width: 0;
+    gap: 9px;
+  }
+  .pricing-note-easyread .icon { width: 28px; height: 28px; font-size: 1.13em; }
+}
+@media (max-width: 500px) {
+  .pricing-note-easyread {
+    font-size: 0.93rem;
+    padding: 10px 2vw 10px 2vw;
+    gap: 6px;
+    border-radius: 7px;
+  }
+  .pricing-note-easyread .icon { width: 22px; height: 22px; font-size: 1em; }
+}
+
+/* Responsive chỉnh padding, font và layout cho mobile */
+@media (max-width: 1100px) {
+  .pricing-section { padding-left: 8px; padding-right: 8px; }
+  .pricing-cards { gap: 14px; }
+  .pricing-card { width: 90vw; max-width: 340px; min-height: 0; }
+  .pricing-note-highlight { font-size: 0.98rem; padding: 11px 7vw 10px 7vw; }
+}
+
+@media (max-width: 600px) {
+  .pricing-section { padding: 18px 0 10px 0; }
+  .pricing-section h2 { font-size: 1.1rem; margin-bottom: 12px; }
+  .pricing-cards { flex-direction: column; gap: 10px; }
+  .pricing-card {
+    width: 99vw;
+    padding: 13px 5vw 13px 5vw;
+    border-radius: 8px;
+    font-size: 0.97rem;
+    min-height: 0;
+  }
+  .pricing-card h3, .pricing-card .price { font-size: 1rem; }
+  .pricing-card ul { font-size: 0.98rem; }
+  .pricing-card button { font-size: 0.97rem; padding: 8px 0; }
+  .pricing-note-highlight {
+    padding: 7px 3vw 7px 3vw;
+    font-size: 0.92rem;
+    gap: 7px;
+  }
+  .pricing-note-highlight .icon { width: 26px; height: 26px; font-size: 1.05em; }
 }
 
 /* Bảng tính năng */
@@ -232,4 +350,17 @@
     padding: 8px 2px;
     font-size: 0.8rem;
   }
+}
+/* Justify chỉ cột đầu tiên */
+.pricing-table th.justify-col,
+.pricing-table td.justify-col {
+  text-align: justify;
+  /* Đảm bảo có chiều rộng đủ để justify có hiệu quả */
+  min-width: 120px;
+  max-width: 180px;
+  padding-left: 16px;
+  padding-right: 16px;
+  /* Optional: căn đều chiều dọc nếu muốn */
+  vertical-align: middle;
+  /* Giữ nguyên style khác */
 }

@@ -117,112 +117,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // slider đnahs giá kahcs hàng 
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector('.testimonials-slider');
-  const items = Array.from(slider.querySelectorAll('.testimonial-item'));
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
+const track = document.querySelector('.testimonial-track');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+let index = 0;
+const items = document.querySelectorAll('.testimonial-item');
 
-  const VISIBLE = 3;
-  let current = 0;
-  let autoSlideInterval = null;
-  let isTransitioning = false;
+// Số lượng phần tử hiển thị cùng lúc (tùy vào responsive)
+function getVisibleItems() {
+  return window.innerWidth < 900 ? 1 : 3;
+}
 
-  const TOTAL_ITEMS = items.length;
-  let totalClones = 0;
+function updateSlider() {
+  const visibleItems = getVisibleItems();
+  const itemWidth = items[0].offsetWidth + 30; // bao gồm margin-right
+  track.style.transform = `translateX(-${index * itemWidth}px)`;
+}
 
-  function getItemWidth() {
-    const item = slider.querySelector('.testimonial-item');
-    const gap = parseInt(getComputedStyle(slider).gap || 0, 10);
-    return item.offsetWidth + gap;
+// Sự kiện khi nhấn nút "Tiếp"
+nextBtn.addEventListener('click', () => {
+  const visibleItems = getVisibleItems();
+  if (index < items.length - visibleItems) {
+    index++;
+  } else {
+    index = 0;
   }
-
-  function clearClones() {
-    slider.querySelectorAll('.clone').forEach(el => el.remove());
-  }
-
-  function setupClones() {
-    clearClones();
-    const head = items.slice(0, VISIBLE);
-    const tail = items.slice(-VISIBLE);
-
-    head.forEach(el => {
-      const clone = el.cloneNode(true);
-      clone.classList.add('clone');
-      slider.appendChild(clone);
-    });
-
-    tail.forEach(el => {
-      const clone = el.cloneNode(true);
-      clone.classList.add('clone');
-      slider.insertBefore(clone, slider.firstChild);
-    });
-
-    totalClones = VISIBLE * 2;
-  }
-
-  function moveTo(index, withTransition = true) {
-    const itemWidth = getItemWidth();
-    slider.style.transition = withTransition ? "transform 0.55s ease" : "none";
-    slider.style.transform = `translateX(-${itemWidth * (index + VISIBLE)}px)`;
-    current = index;
-  }
-
-  function nextSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    moveTo(current + 1);
-  }
-
-  function prevSlide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    moveTo(current - 1);
-  }
-
-  function autoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 4000);
-  }
-
-  function restartAuto() {
-    clearInterval(autoSlideInterval);
-    autoSlide();
-  }
-
-  function handleResize() {
-    setupClones();
-    moveTo(current, false);
-  }
-
-  slider.addEventListener('transitionend', () => {
-    const max = TOTAL_ITEMS - VISIBLE;
-    if (current > max - 1) {
-      moveTo(0, false); // về đầu
-    }
-    if (current < 0) {
-      moveTo(max - 1, false); // về cuối
-    }
-    isTransitioning = false;
-  });
-
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-    restartAuto();
-  });
-
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
-    restartAuto();
-  });
-
-  window.addEventListener('resize', handleResize);
-
-  // INIT
-  setupClones();
-  moveTo(0, false);
-  autoSlide();
+  updateSlider();
 });
 
+// Sự kiện khi nhấn nút "Trước"
+prevBtn.addEventListener('click', () => {
+  const visibleItems = getVisibleItems();
+  if (index > 0) {
+    index--;
+  } else {
+    index = items.length - visibleItems;
+  }
+  updateSlider();
+});
+
+// Cập nhật lại khi thay đổi kích thước cửa sổ
+window.addEventListener('resize', updateSlider);
+
+// Khởi tạo ban đầu
+updateSlider();
+
+// Tự động trượt mỗi 4 giây
+setInterval(() => {
+  const visibleItems = getVisibleItems();
+  if (index < items.length - visibleItems) {
+    index++;
+  } else {
+    index = 0;
+  }
+  updateSlider();
+}, 4000);
 
 
 
@@ -267,47 +216,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
   showSlide(current);
   startAuto();
-});
-// quy trình 
-// Vanilla JS slider for 4-step process, show 3 at a time, slide left/right
-document.addEventListener('DOMContentLoaded', function () {
-  const items = Array.from(document.querySelectorAll('.timeline-item'));
-  const track = document.querySelector('.timeline-track');
-  const prevBtn = document.querySelector('.slider-btn.prev');
-  const nextBtn = document.querySelector('.slider-btn.next');
-  let current = 0; // index of the first visible item
-
-  function render() {
-    items.forEach((el, idx) => {
-      el.classList.remove('active', 'prev', 'next');
-      el.style.display = 'none';
-    });
-    // Always show 3 items (current, current+1, current+2), highlight current+1 as 'active'
-    for (let i = 0; i < 3; i++) {
-      let idx = current + i;
-      if (idx >= items.length) continue;
-      items[idx].style.display = '';
-      if (i === 0) items[idx].classList.add('prev');
-      else if (i === 1) items[idx].classList.add('active');
-      else if (i === 2) items[idx].classList.add('next');
-    }
-    // Move the track (not strictly needed if hiding/showing)
-    // track.style.transform = `translateX(-${current * (items[0].offsetWidth + 30)}px)`;
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current >= items.length - 3;
-  }
-
-  prevBtn.addEventListener('click', function () {
-    if (current > 0) {
-      current--;
-      render();
-    }
-  });
-  nextBtn.addEventListener('click', function () {
-    if (current < items.length - 3) {
-      current++;
-      render();
-    }
-  });
-  render();
 });
